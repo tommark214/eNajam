@@ -1,0 +1,19 @@
+﻿@model eNajam.Models.UserViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "signin" }))
+{
+
+    <h1 class="h2 mb-3 font-weight-normal">eNajam</h1>
+    <h2 class="h3 mb-3 font-weight-normal">Prijavite se za nastavak</h2>
+    <label for="email" class="sr-only">Email</label>
+    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { Value = Model.Email, @class = "form-control", id = "margin", name = "key", @placeholder = "Email adresa" } })
+    @Html.EditorFor(model => model.Lozinka, new { htmlAttributes = new { Value = Model.Lozinka, @class = "form-control", id = "margin", name = "key", @placeholder = "Lozinka", type = "password" } })
+
+    <br />
+
+    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Prijava" />
+
+}

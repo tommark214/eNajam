@@ -1,0 +1,74 @@
+﻿@model eNajam.Models.RealEstateViewModel
+@{
+    ViewBag.Title = "Režije";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <br />
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12">
+            <div class="card clearfix">
+                <div class="card-header">
+                    <h2>Nova nekretnina</h2>
+                </div>
+                <div class="card-body">
+                    <br />
+                    <div class="form-row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { Value = Model.Naziv, @class = "form-control", id = "naziv", name = "Naziv", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.LabelFor(model => model.Lokacija, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Lokacija, new { htmlAttributes = new { Value = Model.Lokacija, @class = "form-control", id = "iznos", name = "Iznos", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.LabelFor(model => model.Povrsina, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Povrsina, new { htmlAttributes = new { Value = Model.Povrsina, @class = "form-control", id = "naziv", name = "Naziv", autocomplete = "off", placeholder = "m2" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.LabelFor(model => model.Sobe, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Sobe, new { htmlAttributes = new { Value = Model.Sobe, @class = "form-control", id = "naziv", name = "Naziv", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.LabelFor(model => model.Ostalo, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Ostalo, new { htmlAttributes = new { Value = Model.Ostalo, @class = "form-control", id = "iznos", name = "Iznos", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Spremi" class="btn btn-primary m-t-15 waves-effect" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

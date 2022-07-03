@@ -1,0 +1,130 @@
+﻿@model eNajam.Models.DocumentViewModel
+@{
+    ViewBag.Title = "Ugovor";
+}
+
+@using (Html.BeginForm())
+{
+    <br />
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12">
+            <div class="card clearfix">
+                <div class="card-header">
+                    <h2>Novi ugovor</h2>
+                </div>
+                <div class="card-body">
+                    <br /> 
+                    <div class="form-row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">                                
+                                @Html.LabelFor(model => model.Najmodavac, htmlAttributes: new { @class = "form-label" })
+                                @Html.EditorFor(model => model.Najmodavac, new { htmlAttributes = new { Value = Model.Najmodavac, @class = "form-control", id = "najmodavac", name = "Najmodavac", autocomplete = "off" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="korisnik">Odaberite korisnika</label>
+                                @Html.DropDownListFor(x => Model.KorisnikId, new SelectList(Model.PopisKorisnika, "Id", "Naziv"), "Odaberite korisnika", htmlAttributes: new { @class = "form-control", id = "korisnik" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="korisnik">Odaberite nekretninu</label>
+                                @Html.DropDownListFor(x => Model.Nekretnina, new SelectList(Model.PopisNekretnina, "Id", "Naziv"), "Odaberite nekretinu", htmlAttributes: new { @class = "form-control", id = "nekretnine" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label-lg" for="clanovi">Detalji nekretnine</label>
+                        <div class="col-lg-10 col-md-10">
+                            @Html.TextAreaFor(model => model.DetaljiNekretnine, new { Value = Model.DetaljiNekretnine, @class = "form-control", id = "detalji-nekretnine", name = "DetaljiNekretnine", row = "3" })
+                        </div>
+                    </div>
+                    <div class="form-group row">   
+                        <label class="col-lg-2 col-form-label-lg" for="clanovi">Članovi</label>
+                        <div class="col-lg-10 col-md-10">
+                            @Html.TextAreaFor(model => model.Članovi, new { Value = Model.Članovi, @class = "form-control", id = "clanovi", name = "clanovi", row = "3" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <label for="DetaljiNajamnine">Detalji najamnine</label>
+                                    @Html.EditorFor(model => model.DetaljiNajamnine, new { htmlAttributes = new { Value = Model.DetaljiNajamnine, @class = "form-control", id = "iznos", name = "Najmoprimac", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <label for="rit">Opis režija i troškova</label>
+                                    @Html.EditorFor(model => model.OpisRežijaITroškova, new { htmlAttributes = new { Value = Model.OpisRežijaITroškova, @class = "form-control", id = "najmodavac", name = "Najmodavac", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6 col-md-">
+                            <label for="rit">Trajanje ugovora </label>
+
+                            @Html.EditorFor(model => model.TrajanjeUgovora, new { htmlAttributes = new { Value = Model.TrajanjeUgovora, @class = "form-control", id = "iznos", name = "Najmoprimac", autocomplete = "off", placeholder = "ugovor na određeno ili na neodređeno" } })
+                        </div> 
+                        <div class="form-group col-lg-6 col-md-6">
+                            <label for="rit">Datum isteka ugovora</label>
+
+                            @Html.EditorFor(model => model.DatumIsteka, new { htmlAttributes = new { Value = Model.DatumIsteka, @class = "form-control", id = "datum-isteka", name = "DatumIsteka" } })
+                        </div>
+                    </div>
+                    <div class="form-row">                       
+                        <div class="form-group col-lg-12 ">
+                            <label for="rit">Uvjeti raskida ugovora</label>
+                            @Html.EditorFor(model => model.UjetiRaskidaUgovora, new { htmlAttributes = new { Value = Model.UjetiRaskidaUgovora, @class = "form-control", id = "iznos", name = "Najmoprimac", autocomplete = "off" } })
+                        </div>   
+                    </div>
+                    @Html.HiddenFor(m => m.Tip)
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Spremi" class="btn btn-primary m-t-15 waves-effect" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datum-isteka').datepicker({
+                format: 'dd.mm.yyyy'
+            });          
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        $("#nekretnine").change(function () {
+            var selection = $(this).val();
+
+            let gfsg = selection;
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("EstateDetails", "Document")',
+                contentType: "application/json; charset=utf-8",
+                data: { id: selection },
+                dataType: "json",
+                success: function (data) {
+                    $("#detalji-nekretnine").val(data);
+                }
+            });
+
+        });
+    </script>
+    
+    } 

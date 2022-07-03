@@ -1,0 +1,87 @@
+﻿@model eNajam.Models.UserViewModel
+@{
+    ViewBag.Title = "Korisnici";
+}
+
+@using (Html.BeginForm())
+{
+    <br />
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12">
+            <div class="card clearfix">
+                <div class="card-header">
+                    <h2>Novi korisnik</h2>
+                </div>
+                <div class="card-body">
+                    <br />
+                    <div class="form-row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.LabelFor(model => model.Ime, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Ime, new { htmlAttributes = new { Value = Model.Ime, @class = "form-control", id = "naziv", name = "Ime", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.LabelFor(model => model.Prezime, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Prezime, new { htmlAttributes = new { Value = Model.Prezime, @class = "form-control", id = "Prezime", name = "Prezime", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.LabelFor(model => model.OIB, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.OIB, new { htmlAttributes = new { Value = Model.OIB, @class = "form-control", id = "OIB", name = "OIB", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.LabelFor(model => model.Mobitel, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Mobitel, new { htmlAttributes = new { Value = Model.Mobitel, @class = "form-control", id = "Mobitel", name = "OIB", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Adresa, htmlAttributes: new { @class = "form-check-label" })
+                                @Html.EditorFor(model => model.Adresa, new { htmlAttributes = new { Value = Model.Adresa, @class = "form-control", id = "datum-dospijeca", name = "DatumDospijeca" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-check-label" })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { Value = Model.Email, @class = "form-control", id = "datum-dospijeca", name = "DatumDospijeca" } })
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Lozinka, htmlAttributes: new { @class = "form-label" })
+                                @Html.EditorFor(model => model.Lozinka, new { htmlAttributes = new { Value = Model.Lozinka, @class = "form-control", id = "datum-dospijeca", name = "DatumDospijeca"  } })
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="form-group">                                
+                                @Html.DropDownListFor(m => Model.NekretninaId, new SelectList(Model.PopisNekretnina, "Id", "Naziv"), "Odaberite nekretinu", htmlAttributes: new { @class = "form-control", id = "nekretnine" })
+                            </div>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.TipKorisnika)
+                    @Html.HiddenFor(m => m.NajmodavacId)
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Spremi" class="btn btn-primary m-t-15 waves-effect" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

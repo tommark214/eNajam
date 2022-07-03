@@ -1,0 +1,34 @@
+﻿@model IList<eNajam.Models.RealEstateViewModel>
+@{
+    ViewBag.Title = "real estate list";
+}
+@using (Html.BeginForm())
+{
+    <br />
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("RealEstateCreate","RealEstate")'">Novo</button>
+        </div>
+    </div>
+    <br />
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Naziv</th>
+                <th scope="col">Lokacija</th>               
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td scope="row"><a href="@Url.Action("RealEstateEdit","RealEstate", new { id = Model[i].Id })">@Model[i].Naziv</a></td>
+                    <td>@Model[i].Lokacija</td>                    
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+

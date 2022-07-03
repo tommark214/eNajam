@@ -1,0 +1,84 @@
+﻿@model eNajam.Models.DocumentViewModel
+@{
+    ViewBag.Title = "Režije";
+}
+
+@using (Html.BeginForm())
+{
+    <br />
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12">
+            <div class="card clearfix">
+                <div class="card-header">
+                    <h2>Dodavanje nove</h2>
+                </div>
+                <div class="card-body">
+                    <br />
+                    <div class="form-row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { Value = Model.Naziv, @class = "form-control", id = "naziv", name = "Naziv", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.LabelFor(model => model.Iznos, htmlAttributes: new { @class = "form-label" })
+                                    @Html.EditorFor(model => model.Iznos, new { htmlAttributes = new { Value = Model.Iznos, @class = "form-control", id = "iznos", name = "Iznos", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    @Html.CheckBoxFor(model => model.StatusPlacanja, new { htmlAttributes = new { Value = Model.StatusPlacanja, @class = "form-check-input", id = "StatusPlacanja" } })
+                                    <label for="StatusPlacanja">Status plaćanja</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">                        
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <label for="DatumDospijeca">Datum dospijeća</label>
+                                    @Html.EditorFor(model => model.DatumDospijeca, new { htmlAttributes = new { Value = Model.DatumDospijeca, @class = "form-control", id = "datum-dospijeca", name = "DatumDospijeca", @data_provide = "datepicker", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <label for="DatumPlacanja">Datum plaćanja</label>
+                                    @Html.EditorFor(model => model.DatumPlacanja, new { htmlAttributes = new { Value = Model.DatumPlacanja, @class = "form-control", id = "datum-placanja", name = "DatumPlacanja", @data_provide = "typeahead", autocomplete = "off" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.Tip)
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Spremi" class="btn btn-primary m-t-15 waves-effect" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts{
+    <script type="text/javascript">
+
+            $('#datum-dospijeca').datepicker({
+                format: 'dd.mm.yyyy'
+            });
+
+            $('#datum-placanja').datepicker({
+                format: 'dd.mm.yyyy'
+            });
+
+    </script>
+}

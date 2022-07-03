@@ -1,0 +1,39 @@
+﻿@model IList<eNajam.Models.UserViewModel>
+@{
+    ViewBag.Title = "UserList";
+}
+@using (Html.BeginForm())
+{
+
+    <br />
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("UserCreate","User")'">Novi korisnik</button>
+        </div>
+    </div>
+    <br />
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Ime</th>
+                <th scope="col">Prezime</th>
+                <th scope="col">Mobitel</th>
+                <th scope="col">Tip korisnika</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td scope="row"><a href="@Url.Action("UserEdit","User", new { id = Model[i].Id })">@Model[i].Ime</a></td>
+                    <td>@Model[i].Prezime</td>
+                    <td>@Model[i].Mobitel</td>
+                    <td>@Model[i].TipKorisnika</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+

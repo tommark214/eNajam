@@ -1,0 +1,56 @@
+﻿@model IList<eNajam.Models.DocumentViewModel>
+@{
+    ViewBag.Title = "UserList";
+}
+@using (Html.BeginForm())
+{
+    <br />
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <button type="button" class="btn btn-primary"  onclick="location.href='@Url.Action("BillCreate","Document")'">Novo</button>
+        </div>
+    </div>
+    <br />
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Naziv</th>
+                <th scope="col">Datum dospijeća</th>
+                <th scope="col">Iznos (kn)</th>
+                <th scope="col">Status plaćanja</th>
+                @if (Global.TIP_KORISNIKA == "NAJMODAVAC")
+                {
+                    <th scope="col">Nekretnina</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+            <tr>
+                <td scope="row"><a href="@Url.Action("BillEdit","Document", new { id = Model[i].Id })">@Model[i].Naziv</a></td>
+                <td>@Model[i].DatumDospijeca</td>
+                <td>@Model[i].Iznos</td>
+                <td>
+                    @if (Model[i].StatusPlacanja)
+                    {
+                        <span class="badge badge-success">Plaćeno</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">Nije plaćeno</span>
+
+                    }
+                </td>
+                @if (Global.TIP_KORISNIKA == "NAJMODAVAC")
+                {
+                    <td>@Model[i].Nekretnina</td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
