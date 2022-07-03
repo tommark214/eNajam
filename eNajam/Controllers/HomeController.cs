@@ -80,7 +80,7 @@ namespace eNajam.Controllers
                             cmd.Dispose();
                             connection.Close();
 
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("BillList", "Document");
                         }
                         else
                         {
@@ -113,7 +113,7 @@ namespace eNajam.Controllers
                 }*/
             }
 
-            return View();
+            return RedirectToAction("BillList","Document");
         }
 
         public ActionResult LogOut()
